@@ -132,9 +132,10 @@
         {% block logo %}
         <div class="logo hidden-xs">
           <a href="{% if last_instance %}{% url 'map' instance_url_name=last_instance.url_name %}{% else %}/{% endif %}"
-            ><img id="site-logo" src="{{ logo_url }}" alt="OpenTreeMap">
+            ><img id="site-logo" src="http://trees.metastudio.org/media/logos/trees-at-ms-logo.png" alt="OpenTreeMap">
           </a>
         </div>
+
         {% endblock logo %}
 
         <div class="search-wrapper">
@@ -152,8 +153,36 @@
 
       {% block export %}
       {% endblock export %}
-
+ 
       {% block content %}
+      <div class="img" style="height:300px; overflow:hidden;">
+  <img src="http://nroer.gov.in/static/img/ciet.ncert/B_Backgroud_Water_Colour_display_1024" style="background-width:100%; background-height:100%; background-repeat:no-repeat; color:white; width: 100%;" > </img>
+      </div>
+
+  <div class="inner_content" style="padding-left:5%; padding-top:5% ; border-radius:15px; margin: 0 auto; ">
+
+    <h2> <b>Welcome to Trees@MetaStudio!</b> </h2>
+    <p> At metaStudio, we attempt to map the trees in and around our localities.  <a href="/mumbai/page/About/"> To know more about us, click here.</a> </p>
+    <p> Kindly have a look at the various areas we currently map. Others will be added soon. </p>
+    <p>
+      <a href="/mumbai/map">Mumbai</a> <br/>
+      <a href="/delhi/map">Delhi</a> <br/>
+      <a href="/bengaluru/map">Bengaluru</a> <br/>
+      <a href="/bhubaneswar/map">Bhubaneswar</a> <br/>
+      <a href="/thiruvananthapuram/map/">Thiruvananthapuram</a> <br/>
+      <a href="/chandigarh/map">Chandigarh</a> <br/>
+      <a href="/mangalore/map">Mangalore</a> <br/>
+      <a href="/kalyan/map">Kalyan</a> <br/>
+      <a href="/thane/map">Thane</a> <br/>
+      <a href="/ulhasnagar/map">Ulhasnagar</a> <br/>
+      <a href="/pune/map">Pune</a> <br/>
+      <a href="/nashik/map">Nashik</a> <br/>
+      <a href="/hoshangabad/map">Hoshangabad</a> <br/>
+      <a href="/goa/map">Goa</a> <br/>
+      <a href="/jaipur/map">Jaipur</a> <br/>
+    </p>
+  </div>
+           
       {% endblock content %}
 
     </div>

@@ -2,12 +2,14 @@
 {% load i18n %}
 
 {% block content %}
-<div class="image-background"></div>
+
+<div class="image-background">
+<img src="http://nroer.gov.in/static/img/ciet.ncert/B_Backgroud_Water_Colour_display_1024" alt="header image">
+</div>
 <div class="container contained profile">
     <div class="row">
-    	<div class="col-md-12">
-			<h1>{{ request.instance.name }}</h1>
-			<a href="{% url 'map' instance_url_name=request.instance.url_name %}" class="btn">{% trans "Explore Trees" %}</a>
+    	<div class="col-md-12">			
+			<a href="{% url 'map' instance_url_name=request.instance.url_name %}" class="btn">{% trans "Explore Trees and add some of your own!" %}</a>
 		</div>
 	</div>
 </div>
