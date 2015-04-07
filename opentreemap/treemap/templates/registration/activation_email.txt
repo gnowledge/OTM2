@@ -8,9 +8,9 @@ Thank you for creating a tree map account and joining our community. To activate
 {{ site.domain }}{% url 'registration_activate' activation_key %}
 {% blocktrans %}
 
-You can use your OpenTreeMap account to sign in to the tree map you registered on as well as any other map in the OpenTreeMap system. We hope you enjoy exploring the urban forest!
+You can use your account to sign in to the district tree map you registered on as well as any other map in the OpenTreeMap system. We hope you enjoy exploring the urban forest!
 
-- The OpenTreeMap Team
+- The MetaStudio Team
 
 If you did not request a tree map account or do not wish to finalize your account creation, please ignore this email. No additional action is required.
 
