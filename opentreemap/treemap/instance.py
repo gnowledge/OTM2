@@ -64,10 +64,12 @@ DEFAULT_PLOT_STEWARDSHIP_CHOICES = [
     'Changed to Remove a Guard',
     'Filled with Herbaceous Plantings']
 
+
+
 # Used for collection UDF search on the web
 # if we come to support more udfcs, we can add them here.
 UDFC_MODELS = ['Tree', 'Plot']
-UDFC_NAMES = ['Stewardship', 'Alerts']
+UDFC_NAMES = ['Stewardship', 'Alerts', 'Pests']
 
 
 def reserved_name_validator(name):

@@ -7,5 +7,5 @@ If you didn't ask to recover your username, just ignore this email.  No addition
 
 If you want to reset your password, go to {{ password_url }}
 
-- The OpenTreeMap Team
+- The MetaStudio Team
 {% endblocktrans %}
