@@ -28,11 +28,12 @@ def instance_request(view_fn, redirect=True):
     @wraps(view_fn)
     def wrapper(request, instance_url_name, *args, **kwargs):
         instance = get_instance_or_404(url_name=instance_url_name)
+        #baseinstance = get_instance_or_404(url_name="mumbai")
         # Include the instance as both a request property and as an
         # view function argument for flexibility and to keep "template
         # only" requests simple.
         request.instance = instance
-
+        #request.baseinstance = baseinstance
         request.instance_supports_ecobenefits = instance.has_itree_region()
 
         user = request.user

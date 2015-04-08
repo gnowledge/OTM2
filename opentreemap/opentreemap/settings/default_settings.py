@@ -12,7 +12,7 @@ UITEST_SETUP_FUNCTION = None
 
 # This email is shown in various contact/error pages
 # throughout the site
-SUPPORT_EMAIL_ADDRESS = 'support@yoursite.com'
+SUPPORT_EMAIL_ADDRESS = 'support@maps.metastudio.org'
 SYSTEM_USER_ID = -1
 
 #
@@ -55,7 +55,7 @@ AUTH_USER_MODEL = 'treemap.User'
 INTERNAL_IPS = ['127.0.0.1']
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    # ('Johnson Chetty', 'johnsonchetty@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -80,7 +80,7 @@ TILE_HOST = None
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Asia/Kolkata'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
