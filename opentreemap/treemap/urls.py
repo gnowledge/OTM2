@@ -37,7 +37,7 @@ urlpatterns = patterns(
         routes.map_feature_detail, name='map_feature_detail'),
     url(r'^features/(?P<type>\w+)/$',
         routes.add_map_feature, name='add_map_feature'),
-    url(r'^features/(?P<feature_id>\d+)/(?P<edit>edit)$',
+    url(r'^features/(?P<feature_id>\d+)/edit$',
         routes.edit_plot_detail, name='map_feature_detail_edit'),
     url(r'^features/(?P<feature_id>\d+)/popup$',
         routes.map_feature_popup, name='map_feature_popup'),

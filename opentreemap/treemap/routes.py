@@ -17,7 +17,7 @@ from django_tinsel.decorators import (route, json_api_call, render_template,
 from treemap.decorators import (login_or_401, return_400_if_validation_errors,
                                 require_http_method, requires_feature,
                                 creates_instance_user, instance_request,
-                                admin_instance_request, json_api_edit)
+                                admin_instance_request, json_api_edit, get_instance)
 
 import treemap.views.user as user_views
 import treemap.views.photo as photo_views
@@ -183,6 +183,24 @@ get_plot_eco = do(
 #####################################
 # tree
 #####################################
+
+tree_details  = do(
+    route(
+        GET=feature_views.tree_page,
+        ELSE=do(
+            json_api_edit,
+            return_400_if_validation_errors,
+            route(
+                PUT=feature_views.tree_page_update,
+                DELETE=feature_views.tree_page_delete))))
+
+tree_details_edit = do(
+    get_instance,
+    login_required,
+    render_template('treemap/plot_detail.html'),
+    feature_views.tree_page_edit)
+
+
 
 delete_tree = do(
     instance_request,

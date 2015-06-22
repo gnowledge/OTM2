@@ -87,15 +87,41 @@ def map_feature_detail(request, instance, feature_id, render=False):
     else:
         return context
 
-
 def render_map_feature_detail(*args, **kwargs):
     return map_feature_detail(*args, render=True, **kwargs)
-
 
 def plot_detail(request, instance, feature_id, edit=False, tree_id=None):
     feature = get_map_feature_or_404(feature_id, instance, 'Plot')
     return context_dict_for_plot(request, feature, edit, tree_id)
 
+def tree_page(request, tree_id, **kwargs):    
+    t = get_object_or_404(Tree, pk=tree_id)
+    feature_id = t.plot_id
+    instance = t.instance        
+    request.instance=t.instance
+    return map_feature_detail(request, instance, feature_id, render=True)
+        
+def tree_page_edit(request, tree_id, **kwargs):
+    t = get_object_or_404(Tree, pk=tree_id)
+    feature_id = t.plot_id
+    instance = t.instance      
+    request.instance=t.instance
+    return plot_detail(request, instance, feature_id, edit=True, tree_id=tree_id)
+    
+
+def tree_page_update(request, tree_id, **kwargs):
+    t = get_object_or_404(Tree, pk=tree_id)
+    feature_id = t.plot_id
+    instance = t.instance      
+    request.instance=t.instance  
+    return update_map_feature_detail(request, instance, feature_id, type='Plot')
+
+def tree_page_delete(request, tree_id, **kwargs):
+    t = get_object_or_404(Tree, pk=tree_id)
+    feature_id = t.plot_id
+    instance = t.instance      
+    request.instance=t.instance  
+    return delete_map_feature(request, instance, feature_id, type='Plot')
 
 def render_map_feature_add(request, instance, type):
     if type in instance.map_feature_types[1:]:

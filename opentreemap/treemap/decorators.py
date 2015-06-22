@@ -173,6 +173,21 @@ def login_or_401(view_fn):
 
     return wrapper
 
+def get_instance(view_fn):
+    @wraps(view_fn)
+    def wrapper(request, tree_id, *args, **kwargs):
+        from treemap.models import Tree
+        try:
+            t = Tree.objects.get(id=tree_id)
+            request.instance=t.instance
+            instance_url_name = t.instance.url_name
+            return view_fn(request, instance_url_name, *args, **kwargs)
+        except:
+            pass
+            #return view_fn(request, instance_url_name="mumbai", *args, **kwargs)
+    return wrapper
+            
+            
 
 def creates_instance_user(view_fn):
     @wraps(view_fn)
