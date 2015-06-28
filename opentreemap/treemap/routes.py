@@ -25,6 +25,11 @@ import treemap.views.tree as tree_views
 import treemap.views.misc as misc_views
 import treemap.views.map_feature as feature_views
 
+from django.shortcuts import get_object_or_404
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 add_map_feature_photo_do = partial(
     do,
@@ -184,22 +189,26 @@ get_plot_eco = do(
 # tree
 #####################################
 
-tree_details  = do(
+
+tree_details = do(
+    get_instance,
+    instance_request,
     route(
-        GET=feature_views.tree_page,
-        ELSE=do(
+        GET=feature_views.render_map_feature_detail,
+        ELSE=do(            
             json_api_edit,
             return_400_if_validation_errors,
             route(
-                PUT=feature_views.tree_page_update,
-                DELETE=feature_views.tree_page_delete))))
+                PUT=feature_views.update_map_feature_detail,
+                DELETE=feature_views.delete_map_feature))))
+
 
 tree_details_edit = do(
     get_instance,
+    instance_request,    
     login_required,
     render_template('treemap/plot_detail.html'),
-    feature_views.tree_page_edit)
-
+    feature_views.plot_detail)
 
 
 delete_tree = do(

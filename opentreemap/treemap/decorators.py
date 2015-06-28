@@ -22,11 +22,15 @@ from treemap.util import (LazyEncoder, add_visited_instance,
                           get_instance_or_404, login_redirect,
                           can_read_as_super_admin)
 from treemap.exceptions import FeatureNotEnabledException
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def instance_request(view_fn, redirect=True):
     @wraps(view_fn)
     def wrapper(request, instance_url_name, *args, **kwargs):
+        logger.info("instance_url_name: %s",instance_url_name)
         instance = get_instance_or_404(url_name=instance_url_name)
         #baseinstance = get_instance_or_404(url_name="mumbai")
         # Include the instance as both a request property and as an
@@ -53,8 +57,29 @@ def instance_request(view_fn, redirect=True):
                     return login_redirect(request)
             else:
                 return HttpResponse('Unauthorized', status=401)
-
     return wrapper
+
+
+def get_instance(view_fn):
+    @wraps(view_fn)
+    def wrapper(request,tree_id, *args, **kwargs):
+        from treemap.models import Tree
+        try:            
+            logger.info("tree_id: %s", tree_id)
+            t = Tree.objects.get(id=tree_id)
+            feature_id = t.plot.id
+            logger.info(t)
+            request.instance=t.instance
+            instance_url_name = t.instance.url_name
+            logger.info("instance_url_name:", instance_url_name)
+            return view_fn(request, instance_url_name, feature_id, *args, **kwargs)
+        except:
+            import sys
+            logger.info(view_fn.func_name)
+            logger.info(sys.exc_info())
+            return HttpResponse("We're sorry, something went wrong, please email us about this at: support@trees.metastudio.org!", status=401)
+    return wrapper
+
 
 
 def user_must_be_admin(view_fn):
@@ -171,23 +196,8 @@ def login_or_401(view_fn):
         else:
             return HttpResponse('Unauthorized', status=401)
 
-    return wrapper
+    return wrapper                       
 
-def get_instance(view_fn):
-    @wraps(view_fn)
-    def wrapper(request, tree_id, *args, **kwargs):
-        from treemap.models import Tree
-        try:
-            t = Tree.objects.get(id=tree_id)
-            request.instance=t.instance
-            instance_url_name = t.instance.url_name
-            return view_fn(request, instance_url_name, *args, **kwargs)
-        except:
-            pass
-            #return view_fn(request, instance_url_name="mumbai", *args, **kwargs)
-    return wrapper
-            
-            
 
 def creates_instance_user(view_fn):
     @wraps(view_fn)

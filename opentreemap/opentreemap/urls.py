@@ -39,7 +39,7 @@ urlpatterns = patterns(
     url(r'^$', routes.landing_page),
     url(r'^(?P<tree_id>\d+)/$',
         routes.tree_details, name='tree_details'),
-    url(r'^(?P<tree_id>\d+)/(?P<edit>edit)$',
+    url(r'^(?P<tree_id>\d+)/edit',
         routes.tree_details_edit, name='tree_details_edit'),
     url(r'^config/settings.js$', routes.root_settings_js),
     url(r'^users/%s/$' % USERNAME_PATTERN,
